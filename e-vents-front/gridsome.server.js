@@ -6,14 +6,11 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 const nodeExternals = require('webpack-node-externals')
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
-const axios = require('axios')
+const axios         = require('axios')
+
 
 module.exports = function (api) {
   api.chainWebpack((config, { isServer }) => {
-
-    config.plugin('vuetify-loader').use(VuetifyLoaderPlugin);
-
     if (isServer) {
       config.externals([
         nodeExternals({
@@ -21,30 +18,32 @@ module.exports = function (api) {
         })
       ])
     }
-
   })
 
   api.loadSource(async actions => {
     const { data } = await axios.get('http://localhost:1337/events')
 
+
+    console.log(data)
+
     const collection = actions.addCollection({
-      typeName: 'Events'
+      typeName: 'Event',
+      path: '/events/:id'
     })
 
     for (const event of data) {
       collection.addNode({
         id: event.id,
+        path: '/events/' + event.id,
         title: event.title,
         description: event.description,
         price: event.price,
         date: event.date,
         duration: event.duration,
-        thumbnail: event.image.formats.thumbnail.url,
-        image: event.image.formats.medium.url
+        category: event.categories[0].id
       })
-    } 
+    }
+
+    // Use the Data store API here: https://gridsome.org/docs/data-store-api
   })
-
-
-
 }
