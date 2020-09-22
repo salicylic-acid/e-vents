@@ -5,6 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: `Derick's Site of Eternal Judgement`,
+  siteDescription: 'This website will explain how things will End on Earth TM.',
   plugins: []
 }
