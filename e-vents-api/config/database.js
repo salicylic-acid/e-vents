@@ -9,13 +9,6 @@ module.exports = ({ env }) => ({
       },
       options: {
         useNullAsDefault: true,
-	"pool":{
-		    "min":0,
-		     "max":1,
-		      "idleTimeoutMillis":30000,
-		      "createTimeoutMillis":30000,
-		     "acquireTimeoutMillis":30000
-	       }
       },
     },
   },
