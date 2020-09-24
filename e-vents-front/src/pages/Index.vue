@@ -1,33 +1,90 @@
 <template>
-  <Layout>
+  <Layout v-slot="{ searchText }">
+      <v-tabs v-model="tab" grow>
+              <v-tab>Item one</v-tab>
+              <v-tab>Item two</v-tab>
+              <v-tab>Item Three</v-tab>
+      </v-tabs>
 
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
+    <v-row class="justify-space-around">
 
-    <h1>Hello, world!</h1>
+    <v-card
+  class="mx-auto"
+  max-width="400"
+>
+  <v-img
+    class="white--text align-end"
+    height="200px"
+    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+  >
+    <v-card-title>Top 10 Australian beaches</v-card-title>
+  </v-img>
 
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
+  <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
 
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
+  <v-card-text class="text--primary">
+    <div>Whitehaven Beach</div>
 
+    <div>Whitsunday Island, Whitsunday Islands</div>
+  </v-card-text>
+
+  <v-card-actions>
+    <v-btn
+      color="orange"
+      text
+    >
+      Share
+    </v-btn>
+
+    <v-btn
+      color="orange"
+      text
+    >
+      Explore
+    </v-btn>
+  </v-card-actions>
+</v-card>
+
+    </v-row>
   </Layout>
 </template>
 
+
+
 <script>
-export default {
-  metaInfo: {
-    title: 'Hello, world!'
+  export default {
+    metaInfo: {
+    title: 'This is the place'
+    },
+    data() {
+      return {
+        tab: 0,
+        events: []
+        }
+      },
+      watch() {
+        this.tab === 0 ? this.showAllEvents() : this.showEventsByType()
+      },
+    methods: {
+      showAllEvents() {
+        console.log('all')
+      },
+      showEventsByType() {
+        console.log('events')
+      }
+    }
+
   }
-}
 </script>
 
 <style>
+
 .home-links a {
   margin-right: 1rem;
 }
+
+.v-card {
+  margin-top: 60px;
+}
+
 </style>
