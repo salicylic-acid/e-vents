@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title>Events</v-toolbar-title>
+      <v-toolbar-title> <g-link to="/">Events</g-link></v-toolbar-title>
 
       <v-text-field
         placeholder="Search"
@@ -18,7 +18,8 @@
       />
 
       <v-spacer/>
-      <v-btn>Create Event</v-btn>
+
+      <g-link to="/new-event/"><v-btn>Create Event</v-btn></g-link>
 
     </v-app-bar>
 
@@ -57,6 +58,6 @@ query {
 <style>
 .v-toolbar__title a {
   text-decoration: none;
-  color: #000;
+  color: black !important;
 }
 </style>

@@ -30,19 +30,35 @@ module.exports = function (api) {
   })
 
   api.loadSource(async actions => {
+
+      const res = await axios.delete(`http://localhost:1337/events/4`)
       const { data } = await axios.get(`http://localhost:1337/events`)
 
-        console.log(data)
+
+
+
+
+        console.log(res)
 
       const collection = actions.addCollection({
-        typeName: 'Event'
+        typeName: 'Event',
+        path: '/events/:id',
       })
 
+      console.log('test')
       for (const event of data) {
         collection.addNode({
           id: event.id,
-          title: event.title
+          title: event.title,
+          path: '/events/' + event.id,
+          image: event.image.url,
+          description: event.description,
+          price: event.price,
+          duration: event.duration,
+          date: event.date,
+          categoryName: event.categories[0].name
         })
       }
     })
+
 }
