@@ -51,6 +51,8 @@ query {
         duration
         date
         image
+        categoryID
+        categoryName
       }
     }
   }
